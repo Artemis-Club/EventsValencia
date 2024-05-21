@@ -1,0 +1,87 @@
+@startuml Events_Valencia
+
+class Usuario {
+    + id: int
+    + nick: string
+    + nombre: string
+    + correo: string
+    + contraseña: string
+}
+
+class Administrador extends Usuario {
+
+}
+
+class Valoracion {
+    id: int
+    estrellas: double
+    comentario: string_NULL
+}
+
+class Notificacion {
+    + id: int
+    + titulo: string
+    + descripcion: string
+}
+
+class Evento {
+    + id: int
+    + titulo: string
+    + descripcion: string 
+    + imagen: Buffer
+    + fechaCreacion: Date
+    + fechaActualizacion: Date
+    + url: String
+    + inicio: Date
+    + fin: Date
+}
+
+class Punto {
+    + latitud: double
+    + longitud: double
+}
+
+class Categoria {
+    + nombre: string
+}
+
+class Tramo {
+    + nombre: string
+    + estado: Trafico
+}
+
+class Ruta {
+    + id: int
+    + inicio: Punto
+    + fin: Punto
+    + perfil: string
+    + distancia: double
+    + duracion: double
+}
+
+enum Trafico {
+    FLUIDO
+    DENSO
+    CONGESTIONADO
+    CORTADO
+    SIN_DATOS
+    PASO_INFERIOR_FLUIDO
+    PASO_INFERIOR_DENSO
+    PASO_INFERIOR_CONGESTIONADO
+    PASO_INFERIOR_CORTADO
+}
+
+
+Usuario "1"*--"0..*" Valoracion
+Valoracion "0..*"--"1" Evento
+Usuario "0..*"--"0..*" Evento
+Usuario "1" *-- "0..*" Notificacion
+Administrador "0..1"--"0..*" Evento
+Evento "0..*"--"1" Punto 
+Evento "0..*"--"0..1" Categoria
+Punto "0..*"--"0..1" Tramo
+Tramo .. Trafico
+Ruta "0..*"--"1..*" Punto
+
+
+@enduml

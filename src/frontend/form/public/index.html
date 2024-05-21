@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POST Nuevo Evento</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/></head>
+<body>
+    <h1 style="text-align: center;">Nuevo Evento</h1>
+    <form id="formulario">
+
+        <label for="seleccionador-imagen">Imagen:</label>
+        <div id="contenedor-imagen">
+            <input type="file" id="seleccionador-imagen" accept="image/*">
+            <img id="vista-previa" src="">
+        </div>
+
+        <label for="id">Id:</label>
+        <input type="number" id="id" name="id" style="max-width: 100px;" required>
+
+        <label for="titulo">Titulo:</label>
+        <input type="text" placeholder="(Obligatorio)" id="titulo" name="titulo" required onkeyup="this.value = this.value.toUpperCase()">
+        
+        <label for="categoria">Categoria:</label>
+        <input type="text" placeholder="(Obligatorio) Selecciona o escribe una categoria" id="categoria" name="categoria" list="categorias" required>
+
+        <datalist id="categorias">
+        
+        </datalist>
+
+        <label for="url">Url:</label>
+        <input type="text" id="url" name="url">
+
+
+        <label for="descripcion">Descripcion:</label>
+        <textarea name="descripcion" placeholder="(Obligatorio)" id="descripcion" cols="30" rows="10" form="formulario" required></textarea>
+
+        <label for="direccion">Direccion:</label>
+        <input type="text" id="direccion" name="direccion">
+
+        <label for="coordenada">Coordenada:</label>
+        <input type="text" id="coordenada" placeholder="(Obligatorio) Escribe o clickea el mapa" name="coordenada" required>
+
+        <div id="mapa-contenedor"></div>
+
+        <button id="btn-subir" type="submit">Enviar</button>
+    </form>
+
+    <div id="respuesta"></div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
+    <script src="script.js"></script>
+</body>
+</html>
